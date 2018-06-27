@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+    <style>
+
+    button{
+        font-size: 20px;
+        font-weight: bold;
+        padding: 30px;
+    }
+    body {
+        text-align: center;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+    <h1>Connected & Coordinated</h1>
+    <p class="sub-heading">Communications <b>always</b> on</p>
+    <p class="margin-top-80" >
+        Our <b>data driven</b> services are <b>designed</b> for those working in <b>complex</b> environments
+    </p>
+    <button onclick="window.location.href='/PRBox';"  class="margin-top-80">
+        DISCOVER
+    </button>
+{% endblock %}

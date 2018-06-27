@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block extra_css %}
+    <style>
+    button{
+        font-weight: bold;
+        padding: 0;
+        border: 0;
+        margin:5px 0 5px 0;
+        border-radius: 2px;
+        width: 100%;
+        height: 30px;
+    }
+    .content-4{
+        width: 33%;
+        float: left;
+    }
+    .content-8{
+        width: 66%;
+        float: left;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="content-8">
+        <h2 class="margin-top-20" >Get in Touch </h2>
+        <p class="margin-top-20" > for further questions about the RPbox or our data consultancy services</p>
+        <form method="post">
+
+            {% csrf_token %}
+            {{ form | crispy }}
+            <!--
+            <div class="input-wrapper"><label for="name">Name</label> <input type="text" name="name"></div>
+            <div class="input-wrapper"><label for="email">Email</label> <input type="email" name="email"></div>
+            <div class="input-wrapper"><label for="subject">Subject</label>
+            <input type="radio" name="subject" value="box">RPbox
+            <input type="radio" name="subject" value="data">Data consultancy</div>
+            <div class="input-wrapper">Comments</div><div><textarea name="comment" id="comment" cols="30" rows="10">
+            </textarea></div>-->
+            <button class="input-wrapper" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="content-4">
+        <p><div>For any other questions</div></p>
+        <p><div>Email</div>
+        <div>info@pngk.org</div></p>
+        <p><div>Phone</div>
+        <div>+31615660356</div></p>
+        <p><div>What do you use:</div>
+        <div>Cisco</div>
+        <div>Local VoIP</div></p>
+    </div>
+{% endblock %}

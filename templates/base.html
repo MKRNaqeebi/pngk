@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PNGK</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel=stylesheet type=text/css href="{% static "style.css" %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <div class="header-left">
+                <img class="logo" src="{% static "logo.png" %}" height="60px" width="120px"/>
+            </div>
+            <div class="header-right">
+                <h2 class="header-text" onclick="window.location.href='/Contact';">Contact</h2>
+            </div>
+            <div class="header-right">
+                <h2 class="header-text" onclick="window.location.href='/PRBox';">RPBox</h2>
+            </div>
+        </div>
+        <script>
+            // When the user scrolls the page, execute myFunction
+            window.onscroll = function() {myFunction()};
+            // Get the header
+            var header = document.getElementById("myHeader");
+            // Get the offset position of the navbar
+            var sticky = header.offsetTop;
+            // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+            function myFunction() {
+                if (window.pageYOffset >= sticky) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+            }
+        </script>
+        {% block body %}{% endblock %}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>

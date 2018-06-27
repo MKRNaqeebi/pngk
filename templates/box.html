@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+    <style>
+
+    button{
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .content-4{
+        width: 30%;
+        background-color: #ffffff;
+        float: left;
+        color: #000000;
+        padding: 10px 5%;
+    }
+    .content-8{
+        width: 60%;
+        float: left;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="content-8">
+    <p class="margin-top-20" > The <b>RPbox</b> enabling data-driven decisions in places with unreliable infrastructure.</p>
+    <p class="margin-top-20" >The RPbox is a portable server which primary function is to control and collect data from incoming and outgoing calls and text messages. This product is designed for organizations working in low and lower-middle income economies and can maintain functionality during intermittent periods of no power or internet. For security, all data can be stored locally.</p>
+    <p class="margin-top-20" > The RPbox, in combination with PNGK’s data science experts is your ‘one stop shop’ for all of your information gathering and processing needs.</p>
+    <button>
+        <p>View the case study of</p><p>African Clean Energy</p>
+    </button>
+    <button>
+        <p>Test our software</p><p>Call: +31202018365</p>
+    </button>
+    </div>
+    <div class="content-4">
+        {% if calls_detail %}
+            {% for call in calls_detail %}
+        <p>
+            <div>Phone</div><div>{{ call.call_from }}</div>
+            <div>Country</div><div>Holland</div>
+            <div>“I have no idea what you are doing”</div>
+        </p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
