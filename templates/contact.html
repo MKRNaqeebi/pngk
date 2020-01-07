@@ -26,17 +26,8 @@
         <h2 class="margin-top-20" >Get in Touch </h2>
         <p class="margin-top-20" > for further questions about the RPbox or our data consultancy services</p>
         <form method="post">
-
             {% csrf_token %}
             {{ form | crispy }}
-            <!--
-            <div class="input-wrapper"><label for="name">Name</label> <input type="text" name="name"></div>
-            <div class="input-wrapper"><label for="email">Email</label> <input type="email" name="email"></div>
-            <div class="input-wrapper"><label for="subject">Subject</label>
-            <input type="radio" name="subject" value="box">RPbox
-            <input type="radio" name="subject" value="data">Data consultancy</div>
-            <div class="input-wrapper">Comments</div><div><textarea name="comment" id="comment" cols="30" rows="10">
-            </textarea></div>-->
             <button class="input-wrapper" type="submit">Submit</button>
         </form>
     </div>
