@@ -26,6 +26,9 @@ EMAIL_RECIPIENT = ['kamranlhr94@gmail.com', 'EricCBonet@gmail.com']   # second e
 
 
 def contact_us(request):
+    """
+    Handle and submit contact form with POST
+    """
     form = ContactForm(request.POST, None)
     if request.method == 'POST':
         if form.is_valid():
@@ -38,6 +41,9 @@ def contact_us(request):
 
 
 def my_box(request):
+    """
+    Show 5 call details
+    """
     calls_detail = CallDetail.objects.all()
     if len(calls_detail) > 5:
         calls_detail = calls_detail[:5]
@@ -49,6 +55,9 @@ def my_box(request):
 
 
 def index(request):
+    """
+    Render index page
+    """
     template = loader.get_template('index.html')
     context = {
         'title': "Home",
@@ -57,6 +66,12 @@ def index(request):
 
 
 def send_email(subject, body):
+    """
+    Send Email
+
+    :param string subject: Subject of email
+    :param string body: body of email
+    """
     FROM = EMAIL_USER
     TO = EMAIL_RECIPIENT if type(EMAIL_RECIPIENT) is list else [EMAIL_RECIPIENT]
     SUBJECT = subject
@@ -64,20 +79,20 @@ def send_email(subject, body):
 
     message = """From: %s\nTo: %s\nSubject: %s\n\n%s
     """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
-    try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.ehlo()
-        server.starttls()
-        server.login(EMAIL_USER, EMAIL_PASSWORD)
-        server.sendmail(FROM, TO, message)
-        server.close()
-        print('successfully sent the mail')
-    except:
-        print("failed to send mail")
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.ehlo()
+    server.starttls()
+    server.login(EMAIL_USER, EMAIL_PASSWORD)
+    server.sendmail(FROM, TO, message)
+    server.close()
 
 
 @csrf_exempt
 def no_answer(request):
+    """
+    If bussiness owner is busy and could not able to receive call send hime email so he can call later
+    and play message no answer
+    """
     call_sid = None
     if request.method == 'POST':
         call_sid = request.POST.get('myCallSid', None)
@@ -95,6 +110,9 @@ def no_answer(request):
 
 @csrf_exempt
 def conference_status(request, call_sid):
+    """
+    Get or send conference status
+    """
     resp = VoiceResponse()
     call_status = None
     if request.method == 'POST':
@@ -114,6 +132,9 @@ def conference_status(request, call_sid):
 
 @csrf_exempt
 def join_conference(request, conference_name):
+    """
+    If request comes in join coinference
+    """
     resp = VoiceResponse()
     resp.dial(hangupOnStar=True).conference(conference_name)
     return HttpResponse(str(resp))
@@ -121,6 +142,9 @@ def join_conference(request, conference_name):
 
 @csrf_exempt
 def add_drop(request):
+    """
+    Add or drop from call a participant
+    """
     call_sid = None
     call_status = None
     if request.method == 'POST':
@@ -138,6 +162,9 @@ def add_drop(request):
 
 @csrf_exempt
 def voice_four(request):
+    """
+    Play voice 4 and do actions accordingly
+    """
     call_sid = None
     choice = None
     call_from = None
@@ -173,6 +200,9 @@ def voice_four(request):
 
 @csrf_exempt
 def voice_three(request):
+    """
+    Play voice 3 and do actions accordingly
+    """
     call_sid = None
     recording_url = None
     if request.method == "POST":
@@ -195,6 +225,9 @@ def voice_three(request):
 
 @csrf_exempt
 def voice_two(request):
+    """
+    Play voice 2 and do actions accordingly
+    """
     call_sid = None
     recording_url = None
 
@@ -216,6 +249,9 @@ def voice_two(request):
 
 @csrf_exempt
 def voice(request):
+    """
+    Play voice where are you from and save voice
+    """
     call_sid = None
     call_from = None
     if request.method == "POST":

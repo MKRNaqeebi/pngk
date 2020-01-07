@@ -1,9 +1,8 @@
 from django.conf.urls import url
-from . import views
+from AudioCall import views
 
 
 urlpatterns = [
-
     url(r'^PRBox$', views.my_box, name='PRBox'),
     url(r'^Contact$', views.contact_us, name='Contact'),
     url(r'^$', views.index, name='index'),
